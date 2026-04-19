@@ -99,7 +99,3 @@ Backend runs on port 8000 by default.
 ![Admin Login](screenshots/admin_login.png)
 ![Admin Dashboard](screenshots/admin_dashboard.png)
 ![Add Item](screenshots/add_item_drag_drop.png)
-
-## Author
-
-Tanishq Bhardwaj
