@@ -1,0 +1,21 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 4%;
+}
+
+.navbar .logo {
+  font-size: 2.4rem;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.05em;
+  color: #FBBF24;
+}
+.navbar .admin {
+  font-weight: 600;
+}
+
+.navbar .profile {
+  width: 40px;
+}
