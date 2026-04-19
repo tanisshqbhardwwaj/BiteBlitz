@@ -77,22 +77,6 @@ npm run dev
 
 Backend runs on port 8000 by default.
 
-## Main API routes
-
-- POST /api/user/register
-- POST /api/user/login
-- POST /api/cart/add
-- POST /api/cart/remove
-- POST /api/cart/get
-- POST /api/food/add
-- GET /api/food/list
-- POST /api/food/remove
-- POST /api/order/place
-- POST /api/order/verify
-- POST /api/order/userorders
-- GET /api/order/list
-- POST /api/order/status
-- GET /api/health
 
 ## Screenshots
 
