@@ -1,147 +1,105 @@
 # BiteBlitz
 
-BiteBlitz is a full-stack food ordering platform with:
+A simple food ordering app with three parts:
 
-- `frontend/`: customer-facing app
-- `admin/`: dashboard for managing food items and orders
-- `backend/`: REST API with authentication, cart, orders, uploads, and Stripe integration
+- frontend for users
+- admin panel for management
+- backend API
 
-Live links:
+Live:
 
-- Customer app: https://biteblitz-six.vercel.app/
+- User app: https://biteblitz-six.vercel.app/
 - Admin app: https://biteblitzadmin.vercel.app/
 
-![BiteBlitz Home](screenshots/frontend_home.png)
+![Home](screenshots/frontend_home.png)
 
-## Tech Stack
+## What it does
 
-- Frontend/Admin: React + Vite + React Router + Axios + React Toastify
-- Backend: Node.js + Express + Mongoose + JWT + Multer + Stripe
-- Database: MongoDB
-- Deployment: Vercel
+- User signup/login
+- Browse food items
+- Add/remove items in cart
+- Place orders and verify payments
+- View user order history
+- Admin can add/remove food items
+- Admin can view orders and update status
 
-## Key Features
+## Project folders
 
-- User signup/login with JWT auth
-- Food listing with cart management
-- Checkout flow with Stripe payment verification
-- Order history for users
-- Admin authentication and dashboard
-- Admin food management (add/list/remove)
-- Admin order management (list/update status)
+- frontend
+- admin
+- backend
 
-## Project Structure
+## Run locally
 
-```text
-BiteBlitz-main/
-|- frontend/   # customer UI
-|- admin/      # admin dashboard
-|- backend/    # API server
-`- screenshots/
-```
+1. Clone the repo
 
-## Local Setup
-
-1. Clone and enter the project:
-
-```sh
 git clone https://github.com/tanisshqbhardwwaj/BiteBlitz.git
 cd BiteBlitz-main
-```
 
-2. Install dependencies for all apps:
+2. Install dependencies
 
-```sh
-cd backend && npm install
-cd ../frontend && npm install
-cd ../admin && npm install
-```
+cd backend
+npm install
+cd ../frontend
+npm install
+cd ../admin
+npm install
 
-3. Create `backend/.env`:
+3. Create backend env file in backend/.env
 
-```dotenv
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 STRIPE_SECRET_KEY=your_stripe_secret_key
 FRONTEND_URL=http://localhost:5173
-```
 
-4. Create env files for frontend/admin (optional but recommended):
+4. Create frontend env file in frontend/.env
 
-- `frontend/.env`
-
-```dotenv
 VITE_API_URL=http://localhost:8000
-```
 
-- `admin/.env`
+5. Create admin env file in admin/.env
 
-```dotenv
 VITE_API_URL=http://localhost:8000
-```
 
-5. Start all services in separate terminals:
+6. Start backend
 
-```sh
-# backend (runs on 8000 by default)
 cd backend
 npm run server
-```
 
-```sh
-# frontend (Vite default: 5173)
+7. Start frontend (new terminal)
+
 cd frontend
 npm run dev
-```
 
-```sh
-# admin (Vite default: 5174 when 5173 is occupied)
+8. Start admin (new terminal)
+
 cd admin
 npm run dev
-```
 
-## Scripts
+Backend runs on port 8000 by default.
 
-- `backend`: `npm run server`
-- `frontend`: `npm run dev`, `npm run build`, `npm run preview`, `npm run lint`, `npm run typecheck`
-- `admin`: `npm run dev`, `npm run build`, `npm run preview`, `npm run lint`
+## Main API routes
 
-## API Overview
-
-Base URL (local): `http://localhost:8000`
-
-- User
-   - `POST /api/user/register`
-   - `POST /api/user/login`
-- Cart
-   - `POST /api/cart/add`
-   - `POST /api/cart/remove`
-   - `POST /api/cart/get`
-- Food
-   - `POST /api/food/add`
-   - `GET /api/food/list`
-   - `POST /api/food/remove`
-- Orders
-   - `POST /api/order/place`
-   - `POST /api/order/verify`
-   - `POST /api/order/userorders`
-   - `GET /api/order/list`
-   - `POST /api/order/status`
-
-Health check:
-
-- `GET /api/health`
+- POST /api/user/register
+- POST /api/user/login
+- POST /api/cart/add
+- POST /api/cart/remove
+- POST /api/cart/get
+- POST /api/food/add
+- GET /api/food/list
+- POST /api/food/remove
+- POST /api/order/place
+- POST /api/order/verify
+- POST /api/order/userorders
+- GET /api/order/list
+- POST /api/order/status
+- GET /api/health
 
 ## Screenshots
 
 ![Admin Login](screenshots/admin_login.png)
 ![Admin Dashboard](screenshots/admin_dashboard.png)
-![Admin Add Item](screenshots/add_item_drag_drop.png)
+![Add Item](screenshots/add_item_drag_drop.png)
 
-## Developer
+## Author
 
-[Tanishq Bhardwaj](https://github.com/Tanisshqbhardwwaj)
-
-## Contributing
-
-Contributions are welcome. Open an issue or submit a pull request with clear details.
+Tanishq Bhardwaj
