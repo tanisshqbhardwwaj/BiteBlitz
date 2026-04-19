@@ -1,146 +1,147 @@
-<div align="center">
-    <h1 style="color: tomato;">BiteBlitz</h1>
+# BiteBlitz
 
-This application is deployed on Vercel. Please check it out [here](https://biteblitz-six.vercel.app/).
-To access the admin dashboard, click [here](https://biteblitzadmin.vercel.app/)
+BiteBlitz is a full-stack food ordering platform with:
 
-![BiteBlitz](screenshots/frontend_home.png)
+- `frontend/`: customer-facing app
+- `admin/`: dashboard for managing food items and orders
+- `backend/`: REST API with authentication, cart, orders, uploads, and Stripe integration
 
-</div>
+Live links:
 
-## Introduction
+- Customer app: https://biteblitz-six.vercel.app/
+- Admin app: https://biteblitzadmin.vercel.app/
 
-BiteBlitz is a full-stack web application that enables users to browse through a variety of dishes, place orders, track their order in real time and get food delivered to their doorstep efficiently. The application leverages the power of the MERN stack (MongoDB, Express.js, React.js, Node.js) to ensure a seamless user experience and robust performance.
+![BiteBlitz Home](screenshots/frontend_home.png)
 
-## 🖥️ Tech Stack
+## Tech Stack
 
-**Frontend:**
+- Frontend/Admin: React + Vite + React Router + Axios + React Toastify
+- Backend: Node.js + Express + Mongoose + JWT + Multer + Stripe
+- Database: MongoDB
+- Deployment: Vercel
 
-![React](https://img.shields.io/badge/react_js-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)&nbsp;
-![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)&nbsp;
-![Static Badge](https://img.shields.io/badge/Redux-%23764ABC?style=for-the-badge&logo=redux)&nbsp;
+## Key Features
 
-**Database:**
+- User signup/login with JWT auth
+- Food listing with cart management
+- Checkout flow with Stripe payment verification
+- Order history for users
+- Admin authentication and dashboard
+- Admin food management (add/list/remove)
+- Admin order management (list/update status)
 
-![MongoDB](https://img.shields.io/badge/MongoDB-%2347A248?style=for-the-badge&logo=mongodb&logoColor=black)&nbsp;
+## Project Structure
 
-**Payment Getway:**
+```text
+BiteBlitz-main/
+|- frontend/   # customer UI
+|- admin/      # admin dashboard
+|- backend/    # API server
+`- screenshots/
+```
 
-![Stripe](https://img.shields.io/badge/Stripe-%23008CDD?style=for-the-badge&logo=stripe&logoColor=black)&nbsp;
+## Local Setup
 
-**Deployed On:**
+1. Clone and enter the project:
 
-![Render](https://img.shields.io/badge/Render-%23000000?style=for-the-badge&logo=render)&nbsp;
+```sh
+git clone https://github.com/tanisshqbhardwwaj/BiteBlitz.git
+cd BiteBlitz-main
+```
 
-## Features
+2. Install dependencies for all apps:
 
-- **User**:login and registration system.
-- **Browse**: Easily browse their favourite dishes.
-- **Order Placement**: Simple and intuitive process for placing orders.
-- **Order Tracking**: Real-time tracking of orders from preparation to delivery.
-- **Payment Gateway**: Secure payment processing.
-- **Admin Dashboard**: Admin interface for managing food and orders.
-- **Responsive Design**: Fully responsive design for seamless use on any device.
+```sh
+cd backend && npm install
+cd ../frontend && npm install
+cd ../admin && npm install
+```
 
-## Installation
+3. Create `backend/.env`:
 
-1. **Clone the repository**:
+```dotenv
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+STRIPE_SECRET_KEY=your_stripe_secret_key
+FRONTEND_URL=http://localhost:5173
+```
 
-   ```sh
-   git clone https://github.com/Tanishqbhardwaj/BiteBlitz
-   cd BiteBlitz
-   ```
+4. Create env files for frontend/admin (optional but recommended):
 
-2. **Install dependencies in admin, backend and frontend**:
+- `frontend/.env`
 
-   ```sh
-   cd admin
-   npm install
+```dotenv
+VITE_API_URL=http://localhost:8000
+```
 
-   cd backend
-   npm install
+- `admin/.env`
 
-   cd frontend
-   npm install
-   ```
+```dotenv
+VITE_API_URL=http://localhost:8000
+```
 
-3. **Set up environment `.env` variables**:
+5. Start all services in separate terminals:
 
-   ```dotenv
+```sh
+# backend (runs on 8000 by default)
+cd backend
+npm run server
+```
 
-   # for mongo database
-   MONGODB_URI= your mongo url
+```sh
+# frontend (Vite default: 5173)
+cd frontend
+npm run dev
+```
 
-   # for password secret
-   JWT_SECRET = your jwt secret
+```sh
+# admin (Vite default: 5174 when 5173 is occupied)
+cd admin
+npm run dev
+```
 
-   # for stripe payment
-   STRIPE_SECRET_KEY= your stripe secret key
-   ```
+## Scripts
 
-4. **Run the application**:
-   In the `admin` directory, start the React app:
-   ```sh
-   npm run dev
-   ```
-   In the `backend` directory, start the server:
-   ```sh
-   npm run server
-   ```
-   In the `frontend` directory, start the React app:
-   ```sh
-   npm run dev
-   ```
+- `backend`: `npm run server`
+- `frontend`: `npm run dev`, `npm run build`, `npm run preview`, `npm run lint`, `npm run typecheck`
+- `admin`: `npm run dev`, `npm run build`, `npm run preview`, `npm run lint`
 
-## API Endpoints
+## API Overview
 
-Here are listed all available API endpoints along with a brief description of each.
+Base URL (local): `http://localhost:8000`
 
-- `POST /api/user/register`: creating new user
-- `POST /api/user/login`: user logged in
-- `POST /api/cart/add`: add foods from user's cart
-- `POST /api/cart/remove`: remove foods from user's cart
-- `POST /api/cart/get`: fetch foods from user's cart
+- User
+   - `POST /api/user/register`
+   - `POST /api/user/login`
+- Cart
+   - `POST /api/cart/add`
+   - `POST /api/cart/remove`
+   - `POST /api/cart/get`
+- Food
+   - `POST /api/food/add`
+   - `GET /api/food/list`
+   - `POST /api/food/remove`
+- Orders
+   - `POST /api/order/place`
+   - `POST /api/order/verify`
+   - `POST /api/order/userorders`
+   - `GET /api/order/list`
+   - `POST /api/order/status`
 
-- `POST /api/food/add`: add food's image and its detail from admin pannel
-- `GET /api/food/list`: get list of all foods in admin pannel
-- `POST /api/food/remove`: remove foods from list from admin pannel
+Health check:
 
-- `POST /api/order/place`: place an order
-- `POST /api/order/verify`: verifying the order payment (success/failed)
-- `POST /api/order/userorders`: all orders of particular user
-- `GET /api/order/list`: get orders of all users in admin pannel
-- `POST /api/order/status`: update status of all orders
+- `GET /api/health`
 
-## 📸 Project Gallery
+## Screenshots
 
-### User Application
-!
-
-### Admin Dashboard
 ![Admin Login](screenshots/admin_login.png)
 ![Admin Dashboard](screenshots/admin_dashboard.png)
-![Admin Drag & Drop](screenshots/add_item_drag_drop.png)
+![Admin Add Item](screenshots/add_item_drag_drop.png)
 
-## 👤 Developer
-
+## Developer
 
 [Tanishq Bhardwaj](https://github.com/Tanisshqbhardwwaj)
 
-## 📬 Contact
+## Contributing
 
-If you want to contact me, you can reach me through below handles.
-
-
-<a href="https://www.linkedin.com/in/Tanisshqbhardwwaj/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
-
-<a href="mailto:Tanishqbhardwaj03@gmail.com"><img  alt="Gmail" src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
-
-<br/>
-<b>Phone:</b> +99999999999
-
-## Contribution:
-
-Feel free to contribute to the project by opening issues or creating pull requests. Your feedback and suggestions are highly appreciated.
-
-### Show your support by Star 🌟 this repo!
+Contributions are welcome. Open an issue or submit a pull request with clear details.
